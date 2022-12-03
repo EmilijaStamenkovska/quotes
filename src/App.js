@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import QuotesListPage from "./components/pages/QuotesListPage";
 import RandomQuotePage from "./components/pages/RandomQuotePage";
 // Style 
-import "./style.css";
+import "./assets/style/style.css";
 
 const App = () => {
 	return (

@@ -3,25 +3,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // UI
 import Button from '../../ui/Button';
+// Rest
+import { quoteInit } from '../../../services/rest/init';
 // Style
 import './style.css';
 
 const QuotesListPage = () => {
-
     const navigate = useNavigate();
 
-    const quoteInit = {
-        "sentence": '', 
-        "character": { 
-            "name": '', 
-            "slug": '', 
-            "house": { 
-                "name": '', 
-                "slug": '' 
-            } 
-        }
-    };
-    
     const [quote, setQuote] = useState(quoteInit);
     const [refresh, setRefresh] = useState(false);
 
@@ -33,7 +22,7 @@ const QuotesListPage = () => {
     }, [refresh]);
 
     return (
-        <div>
+        <div className="random-quote-page">
             <div className="random-quote">
                 <span className="random-quote__sentence">
                     {quote.sentence}
@@ -41,19 +30,20 @@ const QuotesListPage = () => {
                 <span className="random-quote__name">
                     {quote.character.name}
                 </span>
-            </div>
             <Button
+                customClassName="btn-new-random-quote"
                 type='submit'
                 onClick={() => setRefresh(!refresh)}
             >
                 get random quote
             </Button>
             <Button
-                customClassName="btn-random-quote"
+                customClassName="btn-back-to-quotes"
                 onClick={() => navigate("/")}
             >
                 back
             </Button>
+            </div>
         </div>
     );
 };

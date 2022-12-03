@@ -11,10 +11,6 @@
     cursor: pointer;
     padding: 0 40px;
     background-color: rgb(139, 131, 131);
-    color: rgb(241, 241, 241);
-}
-
-.button:hover {
-    background-color: rgb(189, 161, 161);
     color: rgb(0, 0, 0);
+    opacity: 0.78;
 }

@@ -1,17 +1,49 @@
-.random-quote {
+.random-quote-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    margin-top: 150px;
+    width: 80%;
+    margin: 0 auto;
+    height: 750px;
+    font-weight: bold;
 }
 
-    .random-quote__sentence {
-        font-size: 25px;
+    .random-quote {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 37px;
     }
-    
-    .random-quote__name {
-        font-weight: bolder;
-        font-size: 33px;
-    }
+
+        .random-quote__sentence, 
+        .random-quote__name {
+            border-radius: 13px;
+            background-color: rgb(168, 168, 168);
+            opacity: 0.78;
+            box-shadow: 6px 2px 36px 17px #f7f4f429;
+            border-bottom: 7px solid rgb(31, 30, 30);
+        }
+        
+        .random-quote__sentence {
+            font-size: 35px;
+            padding: 0 20px;
+            color: rgb(26, 23, 23);
+        }
+        
+        .random-quote__name {
+            font-size: 63px;
+            padding: 0 40px;
+            color: rgb(39, 38, 38);
+        }
+
+        .btn-new-random-quote {
+            margin-top: 70px;
+        }
+
+        .btn-back-to-quotes {
+            position: absolute;
+            bottom: 44px;
+            background-color: rgb(212, 212, 212);
+        }

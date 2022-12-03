@@ -16,18 +16,17 @@ const QuotesListPage = () => {
             .then((result) => result.json())
             .then((data) => {
                 setQuotes(data);
+                const params = new URLSearchParams(); //instanca od klasa
+                data.map((quote) => params.append('name[]', quote.character.name.split(' ')[0])); //prviot zbor od imeto na karakterot kako query parameter 
 
-                const params = new URLSearchParams(); // pravime instanca od klasa
-                data.map((quote) => params.append('name[]', quote.character.name.split(' ')[0])); //go vadime prviot zbor od imeto na karakterot i go stavame kako query parameter 
-
-                fetch('https://api.genderize.io/?' + params.toString(), { // instancata na klasata go pravime da e to string
+                fetch('https://api.genderize.io/?' + params.toString(), { // instancata na klasata to string
                     method: 'GET'
                 })
                     .then((result) => result.json())
                     .then((data) => setGenderData(data))
             })
             .catch((err) => alert(err));
-    }, []); //
+    }, []); 
 
     return ( 
         <div className="quotes">
@@ -37,10 +36,10 @@ const QuotesListPage = () => {
                     <table>
                         <thead>
                             <tr >
-                                <th>Id</th>
-                                <th>Quote</th>
-                                <th>Character</th>
-                                <th>Gender</th>
+                                <th>id</th>
+                                <th>quote</th>
+                                <th className="character">character</th>
+                                <th>gender</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +57,7 @@ const QuotesListPage = () => {
                                                 {quote.character.name}
                                             </td>
                                             <td>
-                                                {genderData?.[index]?.gender === 'female' ? '👩' : '👨'}
+                                                {genderData?.[index]?.gender === 'female' ? '👧🏻' : '👦🏻'}
                                             </td>
                                         </tr>
                                     )
