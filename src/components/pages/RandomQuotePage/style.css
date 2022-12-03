@@ -1,0 +1,17 @@
+.random-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 150px;
+}
+
+    .random-quote__sentence {
+        font-size: 25px;
+    }
+    
+    .random-quote__name {
+        font-weight: bolder;
+        font-size: 33px;
+    }

@@ -1,0 +1,23 @@
+.quotes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    font-size: 20px;
+    text-align: center; 
+}
+
+    .quotes thead {
+        width: 100%;
+        font-size: 30px;
+    }
+
+        .quotes-sentence {
+            font-size: 16px;
+            padding: 0 55px;
+        } 
+
+    .btn-random-quote {
+        width: 400px;
+    }
