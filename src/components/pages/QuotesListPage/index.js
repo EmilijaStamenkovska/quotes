@@ -1,31 +1,43 @@
 // Core
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux';
+// Reducers
+import { allQuotes } from '../../../services/redux/reducers';
 // UI
 import Button from '../../ui/Button';
 // Style
 import './style.css';
 
 const QuotesListPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [quotes, setQuotes] = useState([]);
     const [genderData, setGenderData] = useState([]);
-    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/random-quote");
+    };
     
     useEffect(() => {
         fetch('https://api.gameofthronesquotes.xyz/v1/random/10')
             .then((result) => result.json())
             .then((data) => {
                 setQuotes(data);
-                const params = new URLSearchParams(); //instanca od klasa
-                data.map((quote) => params.append('name[]', quote.character.name.split(' ')[0])); //prviot zbor od imeto na karakterot kako query parameter 
+                dispatch(allQuotes(data));
 
-                fetch('https://api.genderize.io/?' + params.toString(), { // instancata na klasata to string
-                    method: 'GET'
-                })
-                    .then((result) => result.json())
-                    .then((data) => setGenderData(data))
+                // const params = new URLSearchParams();
+                // data.map((quote) => params.append('name[]', quote.character.name.split(' ')[0])); 
+
+                // fetch('https://api.genderize.io/?' + params.toString(), { 
+                //     method: 'GET'
+                // })
+                //     .then((result) => result.json())
+                //     .then((data) => setGenderData(data))
             })
-            .catch((err) => alert(err));
+            .catch((err) => console.log(err))
     }, []); 
 
     return ( 
@@ -39,7 +51,9 @@ const QuotesListPage = () => {
                                 <th>id</th>
                                 <th>quote</th>
                                 <th className="character">character</th>
-                                <th>gender</th>
+                                <th>character slug</th>
+                                <th>house</th>
+                                <th>house slug</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +71,13 @@ const QuotesListPage = () => {
                                                 {quote.character.name}
                                             </td>
                                             <td>
-                                                {genderData?.[index]?.gender === 'female' ? '👧🏻' : '👦🏻'}
+                                                {quote.character.slug}
+                                            </td>
+                                            <td>
+                                                {quote.character.house.name}
+                                            </td>
+                                            <td>
+                                                {quote.character.house.slug}
                                             </td>
                                         </tr>
                                     )
@@ -70,7 +90,7 @@ const QuotesListPage = () => {
             }
             <Button
                 customClassName="btn-random-quote"
-                onClick={() => navigate("/random-quote")}
+                onClick={handleNavigate}
             >
                 get random quote
             </Button>

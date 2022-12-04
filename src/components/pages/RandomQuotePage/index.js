@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // UI
 import Button from '../../ui/Button';
+// Redux
+import { useDispatch } from 'react-redux';
+// Reducers
+import { randomQ } from '../../../services/redux/reducers';
 // Rest
 import { quoteInit } from '../../../services/rest/init';
 // Style
@@ -10,16 +14,28 @@ import './style.css';
 
 const QuotesListPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [quote, setQuote] = useState(quoteInit);
-    const [refresh, setRefresh] = useState(false);
+    const [randomQuote, setRandomQuote] = useState(false);
+
+    const handleNavigate = () => {
+        navigate("/");
+    };
+
+    const getRandomQuote = () => {
+        setRandomQuote(prevstate => !prevstate);
+    };
 
     useEffect(() => {
         fetch('https://api.gameofthronesquotes.xyz/v1/random')
             .then(result => result.json())
-            .then(json => setQuote(json))
-            .catch(err => alert(err))
-    }, [refresh]);
+            .then(data => {
+                setQuote(data);
+                dispatch(randomQ(data));
+            })
+            .catch(err => console.log(err))
+    }, [randomQuote]);
 
     return (
         <div className="random-quote-page">
@@ -33,13 +49,13 @@ const QuotesListPage = () => {
             <Button
                 customClassName="btn-new-random-quote"
                 type='submit'
-                onClick={() => setRefresh(!refresh)}
+                onClick={getRandomQuote}
             >
                 get random quote
             </Button>
             <Button
                 customClassName="btn-back-to-quotes"
-                onClick={() => navigate("/")}
+                onClick={handleNavigate}
             >
                 back
             </Button>

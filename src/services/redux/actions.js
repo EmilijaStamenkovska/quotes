@@ -1,0 +1,2 @@
+export const SET_ALL_QUOTES = "SET_ALL_QUOTES";
+export const SET_RANDOM_QUOTE = "SET_RANDOM_QUOTE";

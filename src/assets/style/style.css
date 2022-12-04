@@ -1,15 +1,29 @@
+:root {
+	--color-background: rgb(139, 131, 131);
+	--color-background-secondary: rgb(168, 168, 168);
+
+	--color-white-primary: rgb(212, 212, 212);
+
+	--color-black: black;
+	--color-black-primary: rgb(26, 23, 23);
+	--color-black-secondary: rgb(39, 38, 38);
+	--color-border: rgb(31, 30, 30);
+	--shadow: 10px 2px 36px 31px #f7f4f429;
+}
+
 * {
 	padding: 0; 
 	margin: 0; 
 	font-family: 'Cinzel', serif;
 }
 
-html, body, #root {
-	height: 100%;
-	width: 100%;
-	background-image: url('../images/background.jpg');
- 	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-}
+	html, body, #root {
+		height: 100%;
+		width: 100%;
+		background-image: url('../images/background.jpg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		overflow: hidden
+	}
